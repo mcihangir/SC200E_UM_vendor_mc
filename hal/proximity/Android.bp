@@ -1,0 +1,73 @@
+cc_defaults {
+	name: "vendor.mc.proximity.defaults",
+	relative_install_path: "hw",
+	cflags: [
+		"-g",
+		"-O0",
+		"-Wall",
+	],
+	vendor: true,
+}
+
+//
+// build hal
+//
+
+cc_library_shared {
+	name: "proximityhal.default",
+	defaults: [
+		"vendor.mc.proximity.defaults",
+	],
+	srcs: [
+		"hal/*.cpp",
+	],
+	header_libs: [
+		"liblog_headers",
+		"libhardware_headers",
+	],
+	local_include_dirs: [
+		"include",
+	],
+	shared_libs: [
+		"liblog",
+		"libhardware",
+	],
+	static_libs: [
+		"libacmeproximityshim",
+	]
+}
+
+//
+// build shim part
+//
+
+cc_library {
+	name: "libacmeproximityshim",
+	defaults: [
+		"vendor.mc.proximity.defaults",
+	],
+	srcs: [
+		"dev/*.cpp",
+	],
+	header_libs: [
+		"libhardware_headers",
+	],
+	local_include_dirs: [
+		"include",
+		//"include/dev",
+	],
+}
+
+cc_library_headers {
+	name: "libacmeproximityshim_headers",
+	defaults: [
+		"vendor.mc.proximity.defaults",
+	],
+	header_libs: [
+		"libhardware_headers",
+	],
+	export_header_lib_headers: [
+		"libhardware_headers",
+	],
+	export_include_dirs: [ "include" ],
+}
