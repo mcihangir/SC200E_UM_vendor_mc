@@ -1,0 +1,13 @@
+
+service acmenativedaemon /vendor/bin/hw/acmenativedaemon
+	class main
+	user system
+	group system
+	oneshot
+
+
+on property:sys.boot_completed=1
+	write /dev/kmsg "acmesnativedaemon: on property:sys.boot_completed=1"
+
+on boot 
+	write /dev/kmsg "acmesnativedaemon: on boot"

@@ -10,7 +10,7 @@ cc_defaults {
 }
 
 //
-// build hal
+// build hal (shared library module)
 //
 
 cc_library_shared {
@@ -38,7 +38,7 @@ cc_library_shared {
 }
 
 //
-// build shim part
+// build shim part (library module)
 //
 
 cc_library {
@@ -58,6 +58,9 @@ cc_library {
 	],
 }
 
+//
+// build header module
+//
 cc_library_headers {
 	name: "libacmeproximityshim_headers",
 	defaults: [
@@ -71,3 +74,6 @@ cc_library_headers {
 	],
 	export_include_dirs: [ "include" ],
 }
+//error: vendor/mc/app/Android.bp:1:1: "acmesimpledaemon" depends on undefined module "libacmeproximityshim_headerss"
+//23:11:55 soong bootstrap failed with: exit status 1
+//

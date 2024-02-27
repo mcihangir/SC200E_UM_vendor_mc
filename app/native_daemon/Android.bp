@@ -1,0 +1,21 @@
+cc_binary {
+	name: "acmenativedaemon",
+	relative_install_path: "hw",
+	init_rc: ["vendor.acmenativedaemon.rc"],
+	srcs: [
+		"src/*.cpp"
+	],
+	header_libs: [
+		"libhardware_headers",
+		"liblog_headers",
+		"libacmeproximityshim_headers",
+	],
+	shared_libs: [
+		"liblog",
+		"libcutils",
+		"libhardware",
+	],
+	vendor: true,
+	proprietary: true,
+}
+//

@@ -3,7 +3,8 @@
 
 #include <hardware/hardware.h>
 
-#define ACME_PROXIMITY_SENSOR_MODULE "libproximityhal"
+//#define ACME_PROXIMITY_SENSOR_MODULE "libproximityhal"
+#define ACME_PROXIMITY_SENSOR_MODULE "proximityhal"
 
 typedef struct proximity_sensor_device proximity_sensor_device_t;
 //////////////////////////////////////////////////////////////////////////////////////////////////

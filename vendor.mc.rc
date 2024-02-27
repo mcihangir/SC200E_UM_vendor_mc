@@ -1,0 +1,9 @@
+# import /vendor/etc/init/vendor.mc.rc 
+# UM.9.15/device/qcom/bengal/init.target.rc
+
+
+on property:sys.boot_completed=1
+	write /dev/kmsg "vendor-mc: on property:sys.boot_completed=1"
+
+on boot 
+	write /dev/kmsg "vendor-mc: on boot"
