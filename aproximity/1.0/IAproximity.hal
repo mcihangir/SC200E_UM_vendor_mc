@@ -1,0 +1,7 @@
+package vendor.mc.aproximity@1.0;
+
+interface IAproximity {
+	poll(int32_t precision) generates (int32_t proximity);
+	get_details() generates (ProximityDetails details);
+	summarize() generates (ProximitySummary summary);
+};

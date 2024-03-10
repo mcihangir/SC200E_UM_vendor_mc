@@ -1,0 +1,83 @@
+//cc_defaults {
+//	name: "vendor.mc.proximity.defaults",
+//	relative_install_path: "hw",
+//	cflags: [
+//		"-g",
+//		"-O0",
+//		"-Wall",
+//	],
+//  //"-std=c++17",
+//	//stl: "libc++",
+//	vendor: true,
+//}
+
+//
+// build jniso (shared library module)
+//
+
+cc_library_shared {
+	name: "libacmeproximityjni",
+	defaults: [
+		"vendor.mc.proximity.defaults",
+	],
+	srcs: [
+		"cpp/src/*.cpp",
+	],
+	header_libs: [
+		"jni_headers",
+		"liblog_headers",
+		"libhardware_headers",
+		"libacmeproximityshim_headers",
+	],
+	local_include_dirs: [
+		"cpp/include",
+	],
+	shared_libs: [
+		"liblog",
+		"libhardware",
+	],
+	static_libs: [
+		"libacmeproximityshim",
+	]
+}
+
+
+
+//
+// build header module
+//
+cc_library_headers {
+	name: "libacmeproximityjni_headers",
+	defaults: [
+		"vendor.mc.proximity.defaults",
+	],
+	header_libs: [
+		"libhardware_headers",
+	],
+	export_header_lib_headers: [
+		"libhardware_headers",
+	],
+	export_include_dirs: [ "cpp/include" ],
+}
+//error: vendor/mc/app/Android.bp:1:1: "acmesimpledaemon" depends on undefined module "libacmeproximityshim_headerss"
+//23:11:55 soong bootstrap failed with: exit status 1
+//
+
+//
+// build java lib
+//
+
+//android_app  {
+//java_library  {
+//    name: "com.acme.device.proximity",
+//	srcs: ["java/**/*.java"],
+//	installable: true,
+    
+	//Note : shared_libs and jni_libs is not allowed to add to java_library only static_libs
+    //shared_libs: ["libacmeproximityjni"],
+    //jni_libs: ["libacmeproximityjni"],
+	//static_libs: ["libacmeproximityjni"],
+
+	//min_sdk_version: "31",  // Minimum SDK sürümünü belirtin
+//	vendor: true,
+//}
